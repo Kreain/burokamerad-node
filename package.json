@@ -1,0 +1,29 @@
+{
+  "type": "module",
+  "name": "burokamerad-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "App.js",
+  "scripts": {
+    "start": "nodemon App.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kreain/burokamerad-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kreain/burokamerad-node/issues"
+  },
+  "homepage": "https://github.com/Kreain/burokamerad-node#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mysql": "^2.18.1",
+    "uuid": "^8.3.2"
+  }
+}
