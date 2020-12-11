@@ -7,9 +7,9 @@ const connection = mysql.createConnection({
     database: 'burokamerad'
 })
 
-connection.connect(error => {
-    if (error) throw error
-    console.log("Connected to DATABASE")
+connection.connect(err => {
+    if (err) throw err
+    console.log("Connected to database")
 })
 
 export default connection
