@@ -1,5 +1,11 @@
 import { v4 as uuidv4 } from 'uuid'
 import sql from './mysql.js'
+import fs from 'fs'
+import path from 'path'
+
+const __dirname = path.resolve(path.dirname(''))
+
+const root = path.join(__dirname, 'public')
 
 export function ValidateRegisterCredentials(req, res) {
     const name = req.body.name;
@@ -17,11 +23,17 @@ export function ValidateRegisterCredentials(req, res) {
             res.send(JSON.stringify(value))
         } else {
             const uuid = uuidv4()
-            sql.query(`INSERT INTO user VALUES("${name}", "${email}", "${password}", "${uuid}")` , (sqlErr, sqlRes) => {
+            sql.query(`INSERT INTO user VALUES("${name}", "${email}", "${password}", "${uuid}", "default.png")` , (sqlErr, sqlRes) => {
                 if (sqlErr) {
                     res.send(JSON.stringify(value))
                     throw sqlErr
                 }
+                fs.mkdir(`${root}/users/${uuid}`, (err) => {
+                    if (err) throw err
+                    fs.copyFile(`${root}/default.png`,
+                                `${root}/users/${uuid}/default.png`,
+                                err => { if (err) throw err })
+                })
                 value.success = true
                 value.data = {
                     name: name,
